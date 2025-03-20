@@ -29,7 +29,9 @@ export class Triangle implements Figure {
 
     sides.forEach((side) => {
       if (side <= 0) {
-        throw new Error('Cant form triangle with side 0 sm');
+        throw new Error(
+          `Invalid side lengths: (${this.a}, ${this.b}, ${this.c}). All sides must be greater than 0.`,
+        );
       }
     });
 
@@ -56,7 +58,7 @@ export class Circle implements Figure {
       return 113.09;
     }
 
-    return Math.round(Math.PI * this.radius ** 2 * 100) / 100;
+    return Number((Math.PI * this.radius ** 2).toFixed(2));
   }
 
   private checkCircleValidity(): void {
@@ -83,7 +85,9 @@ export class Rectangle implements Figure {
 
   private checkRectangleValidity(): void {
     if (this.width <= 0 || this.height <= 0) {
-      throw new Error('Sides must be greater than 0');
+      throw new Error(
+        `Invalid side lengths: (${this.width}, ${this.height}). Both width and height must be greater than 0.`,
+      );
     }
   }
 }
